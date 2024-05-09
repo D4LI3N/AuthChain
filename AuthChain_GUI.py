@@ -13,20 +13,20 @@ class AuthWindow(QWidget):
         self.setGeometry(100, 100, 300, 150)
 
         # Widgets for registration
-        self.reg_label = QLabel('Registracija:')
-        self.reg_username_label = QLabel('Korisničko ime:')
+        self.reg_label = QLabel('Sign up:')
+        self.reg_username_label = QLabel('Username:')
         self.reg_username_edit = QLineEdit()
-        self.reg_password_label = QLabel('Lozinka:')
+        self.reg_password_label = QLabel('Password:')
         self.reg_password_edit = QLineEdit()
-        self.reg_button = QPushButton('Registruj korisnika')
+        self.reg_button = QPushButton('Sign up')
 
         # Widgets for login
-        self.login_label = QLabel('Prijava:')
-        self.login_username_label = QLabel('Korisničko ime:')
+        self.login_label = QLabel('Login:')
+        self.login_username_label = QLabel('Username:')
         self.login_username_edit = QLineEdit()
-        self.login_password_label = QLabel('Lozinka:')
+        self.login_password_label = QLabel('Password:')
         self.login_password_edit = QLineEdit()
-        self.login_button = QPushButton('Prijavi korisnika')
+        self.login_button = QPushButton('Login')
 
         # Layout setup
         layout = QVBoxLayout()
@@ -55,9 +55,9 @@ class AuthWindow(QWidget):
 
         if username and password:
             block_index = self.blockchain.register_user(username, password)
-            QMessageBox.information(self, 'Registracija uspešna', f'Korisnik {username} uspešno registrovan na AuthChain lanac!\nIndex bloka: {block_index}')
+            QMessageBox.information(self, 'Sign up success', f'User {username} was successfully registered on the AuthChain's chain!\nBlock index: {block_index}')
         else:
-            QMessageBox.warning(self, 'Registracija ne-uspešna', 'Ispunite oba polja!')
+            QMessageBox.warning(self, 'Sign up unsuccessful', 'Fill out all fields!')
 
     def login_user(self):
         username = self.login_username_edit.text()
@@ -65,11 +65,11 @@ class AuthWindow(QWidget):
 
         if username and password:
             if self.blockchain.login_user(username, password):
-                QMessageBox.information(self, 'Prijava uspešna', f'Dobrodošli: {username}!')
+                QMessageBox.information(self, 'Login successful', f'Welcome: {username}!')
             else:
-                QMessageBox.warning(self, 'Prijava ne-uspešna', 'Netočno korisničko ime ili lozinka!')
+                QMessageBox.warning(self, 'Login unsuccessful', 'Invalid username or password!')
         else:
-            QMessageBox.warning(self, 'Prijava ne-uspešna', 'Ispunite oba polja!')
+            QMessageBox.warning(self, 'Login unseccessful', 'Fill out all fields!')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
